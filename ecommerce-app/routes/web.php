@@ -1,28 +1,10 @@
 <?php
-use App\Http\Controllers\CarController;
+
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    // $person =[
-    //     'name'=> 'Frigg',
-    //     'email'=> 'frigg@email.com',
-    // ];
-    // dd => dump and die
-    // dd($person);
-    // dump($person);
-
-    // $aboutPageUrl = '/about';
-
-    // $aboutPageUrl = route('about');
-    $productUrl = route('product.view',['lang'=> 'en', 'id' => 1]);
-    dd($productUrl);
-
-    return view('welcome');
-});
-
-Route::get('{lang}/product/{id}', function(string $lang, string $id){
-
-})->name('product.view');
+//
+Route::get("/", [HomeController::class, 'index'])-> name('home');
 
 Route::fallback(function() {
     return "Rota de fallback";
@@ -36,13 +18,6 @@ Route::view(uri:'/about', view:'about')->name('about');
 // });
 
 // ]
-
-Route::controller(CarController::class)->group(function(){
-    Route::get('/car', 'index');
-});
-
-
-
 
 
 
@@ -60,3 +35,28 @@ Route::controller(CarController::class)->group(function(){
 //     return "Works! $id";
 // }) -> whereNumber('id');
 
+
+// Route::controller(CarController::class)->group(function(){
+//     Route::get('/car', 'index');
+// });
+
+// Route::get('/car/invokable',CarController::class);
+// Route::get('/car',[CarController::class, 'index']);
+
+// Route::apiResources([
+//     'cars'=> CarController::class,
+//     'products'=> ProductController::class
+// ]);
+
+// Route::get('/', function () {
+
+    //     $productUrl = route('product.view',['lang'=> 'en', 'id' => 1]);
+    //     dd($productUrl);
+
+    //     return view('welcome');
+    // });
+
+
+// Route::get('{lang}/product/{id}', function(string $lang, string $id){
+
+// })->name('product.view');
